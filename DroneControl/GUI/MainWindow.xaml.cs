@@ -37,7 +37,7 @@ namespace DroneControl
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            Helper.Close();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

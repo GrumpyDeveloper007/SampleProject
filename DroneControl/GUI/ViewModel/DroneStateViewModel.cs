@@ -27,6 +27,11 @@ namespace DroneControl.GUI.Model
             _state = new DroneState();
         }
 
+        public DroneStateViewModel(DroneState newState)
+        {
+            _state = newState;
+        }
+
         public void Update(DroneStateViewModel model)
         {
             XAngle = model.XAngle;

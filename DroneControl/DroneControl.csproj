@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="GUI\Model\DroneStateViewModel.cs" />
     <Compile Include="GUI\Model\MainWindowViewModel.cs" />
+    <Compile Include="GUI\Service\DispatcherService.cs" />
     <Compile Include="GUI\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

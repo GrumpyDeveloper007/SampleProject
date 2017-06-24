@@ -1,5 +1,6 @@
 ﻿using DroneControl.Domain.Entities;
 using DroneControl.GUI.Helpers;
+using DroneControl.GUI.Service;
 using DroneControl.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -40,11 +41,23 @@ namespace DroneControl.GUI.Model
             a = new DroneStateViewModel();
             a.XAngle = 2;
             _DroneStateHistory.Add(a);
+
+            _DroneUpdateService.StartService();
         }
 
         private void _DroneUpdateService_StatusUpdateReceivedFromDrone(DroneState newState)
         {
+            DispatchService.Invoke(() =>
+            {
+                if (_DroneStateHistory != null)
+                    _DroneStateHistory.Add(new DroneStateViewModel(newState));
+            });
             // todo: add to list, thread safe
+        }
+
+        public void Close()
+        {
+            _DroneUpdateService.Running = false;
         }
 
         private void SendNewDroneCommandLocal(object obj)
