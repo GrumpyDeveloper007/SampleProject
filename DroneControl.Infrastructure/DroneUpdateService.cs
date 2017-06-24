@@ -27,9 +27,16 @@ namespace DroneControl.Infrastructure
         {
             while (Running)
             {
+                var rnd = new Random();
                 DroneState newState = new DroneState();
+                newState.XAngle = rnd.Next();
+                newState.YAngle = rnd.Next();
+                newState.ZAngle = rnd.Next();
+                newState.Speed = rnd.Next();
+                newState.Longitude = rnd.Next();
+                newState.Latitude = rnd.Next();
+                newState.Altitude = rnd.Next();
                 StatusUpdateReceivedFromDrone?.Invoke(newState);
-
 
                 System.Threading.Thread.Sleep(_10Seconds);
             }
@@ -41,7 +48,6 @@ namespace DroneControl.Infrastructure
             {
                 _logger.Log(LogLevel.Info, "Background service started");
 
-
                 _BackgroundWorker = new System.Threading.Thread(new System.Threading.ThreadStart(thread));
                 Running = true;
                 _BackgroundWorker.Start();
@@ -52,7 +58,7 @@ namespace DroneControl.Infrastructure
 
         public void SendGotoCommandToDrone(DroneState state)
         {
-
+            // TODO:
         }
 
 
